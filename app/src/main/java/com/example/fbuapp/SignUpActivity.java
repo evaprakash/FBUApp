@@ -19,7 +19,7 @@ public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
     private EditText etSignUpUsername;
     private EditText etSignUpPassword;
-    private EditText etEmail;
+    //private EditText etEmail;
     private Button btnSubmit;
 
     @Override
@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         etSignUpUsername = findViewById(R.id.etSignUpUsername);
         etSignUpPassword = findViewById(R.id.etSignUpPassword);
-        etEmail = findViewById(R.id.etEmail);
+        //etEmail = findViewById(R.id.etEmail);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -38,18 +38,18 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick login button");
                 String username = etSignUpUsername.getText().toString();
                 String password = etSignUpPassword.getText().toString();
-                String email = etEmail.getText().toString();
-                signUpUser(username, password, email);
+                //String email = etEmail.getText().toString();
+                signUpUser(username, password);
             }
         });
     }
 
-    private void signUpUser(String username, String password, String email) {
+    private void signUpUser(String username, String password) {
         ParseUser user = new ParseUser();
 
         user.setUsername(username);
         user.setPassword(password);
-        user.setEmail(email);
+        //user.setEmail(email);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
