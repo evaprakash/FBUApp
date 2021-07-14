@@ -29,7 +29,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         etSignUpUsername = findViewById(R.id.etSignUpUsername);
         etSignUpPassword = findViewById(R.id.etSignUpPassword);
-        //etEmail = findViewById(R.id.etEmail);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick login button");
                 String username = etSignUpUsername.getText().toString();
                 String password = etSignUpPassword.getText().toString();
-                //String email = etEmail.getText().toString();
                 signUpUser(username, password);
             }
         });
@@ -49,7 +47,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         user.setUsername(username);
         user.setPassword(password);
-        //user.setEmail(email);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
