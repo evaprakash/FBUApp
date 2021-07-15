@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/purple_500"
         app:menu="@menu/menu_bottom_navigation" />
 
 </RelativeLayout>

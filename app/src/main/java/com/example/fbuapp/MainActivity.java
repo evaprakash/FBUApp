@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.example.fbuapp.fragments.ComposeFragment;
 import com.example.fbuapp.fragments.PostsFragment;
 import com.example.fbuapp.fragments.ProfileFragment;
+import com.example.fbuapp.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
 
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
+                        break;
+                    case R.id.action_search:
+                        fragment = new SearchFragment();
                         break;
                     case R.id.action_profile:
                         fragment = new ProfileFragment();
