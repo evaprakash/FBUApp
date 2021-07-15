@@ -104,9 +104,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
    * Use Yelp API to extract relevant information in categories
 * Week 3 Complete remaining core features, Start on complex algorithm part
    * Determine ranking system for best correlating preferences with Yelp categories
-* Week 4 Complete Complex algorithm part and wrap up any remaining features
+* Week 3 Complete Complex algorithm part and wrap up any remaining features
    * Display rankings and resource details (e.g. images of resource provided by Yelp, etc.)
-* Week 5: Polish / Stretch goals
+* Week 4: Polish / Stretch goals
    * Password-protected feed
    * UI fixes in feed/resource finding
 
