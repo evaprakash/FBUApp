@@ -19,7 +19,7 @@
         android:id="@+id/btnCaptureImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/take_photo"
         android:textColor="@color/white" />
 
@@ -34,7 +34,7 @@
         android:id="@+id/btnSubmitImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/share"
         android:textColor="@color/white" />
 

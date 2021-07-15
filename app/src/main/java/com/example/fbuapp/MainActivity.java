@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
-                        fragment = new PostsFragment();
+                        fragment = new ProfileFragment();
                         break;
                     case R.id.action_logout:
                     default:

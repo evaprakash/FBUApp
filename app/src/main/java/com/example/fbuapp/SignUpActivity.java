@@ -16,10 +16,9 @@ import com.parse.SignUpCallback;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    public static final String TAG = "LoginActivity";
+    public static final String TAG = "SignUpActivity";
     private EditText etSignUpUsername;
     private EditText etSignUpPassword;
-    //private EditText etEmail;
     private Button btnSubmit;
 
     @Override
@@ -51,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
+                    Toast.makeText(SignUpActivity.this, "Signup successful!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
                     startActivity(i);
                     finish();
