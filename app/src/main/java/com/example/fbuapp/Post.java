@@ -54,6 +54,10 @@ public class Post extends ParseObject {
         likes.add(user);
     }
 
+    public void unlike(ParseUser user) {
+        likes.remove(user);
+    }
+
     public boolean hasLiked(ParseUser user) {
         if (likes.contains(user)) {
             return true;

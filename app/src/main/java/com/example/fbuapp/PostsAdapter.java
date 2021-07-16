@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +64,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         TextView tvName;
         ImageView ivImage;
         ImageButton heart;
+        TextView numLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +72,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvName = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             heart = itemView.findViewById(R.id.heart);
+            numLikes = itemView.findViewById(R.id.numLikes);
         }
 
         public void bind(Post post) {
@@ -81,14 +82,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
-
+            numLikes.setText(String.valueOf(post.getNumLikes()));
             heart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (post.hasLiked(ParseUser.getCurrentUser()) == false) {
-                        //post.like(ParseUser.getCurrentUser());
-                        //Following line claims I provided int instead of Drawable?
-                        //heart.setImageDrawable(R.drawable.ic_baseline_favorite_24);
+                        post.like(ParseUser.getCurrentUser());
+                        heart.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        numLikes.setText(String.valueOf(post.getNumLikes()));
+                    } else {
+                        post.unlike(ParseUser.getCurrentUser());
+                        heart.setImageResource(R.drawable.ic_outline_favorite_border_24);
+                        numLikes.setText(String.valueOf(post.getNumLikes()));
                     }
                 }
             });

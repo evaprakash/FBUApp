@@ -79,17 +79,19 @@ public class ComposeFragment extends Fragment {
         btnSubmitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isPhoto=true;
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
                     Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null) {
-                    Toast.makeText(getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
-                    return;
+                //    Toast.makeText(getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
+                //    return;
+                    isPhoto = false;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
+                savePost(description, currentUser, photoFile, isPhoto);
             }
         });
     }
@@ -129,10 +131,12 @@ public class ComposeFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void savePost(String description, ParseUser currentUser, File photoFile) {
+    private void savePost(String description, ParseUser currentUser, File photoFile, boolean isPhoto) {
         Post post = new Post();
         post.setDescription(description);
-        post.setImage(new ParseFile(photoFile));
+        if (isPhoto) {
+            post.setImage(new ParseFile(photoFile));
+        }
         post.setUser(currentUser);
         post.saveInBackground(new SaveCallback() {
             @Override
