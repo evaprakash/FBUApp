@@ -5,9 +5,16 @@
     android:id="@+id/loginPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/padding"
     android:orientation="vertical"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/layout_width"
+        android:layout_height="@dimen/layout_height_icon"
+        android:layout_gravity="center"
+        android:src="@drawable/iris" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -36,23 +43,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="@dimen/vertical_margin"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/signUpMsg"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/msg_width"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Don't have an account? " />
+            android:text="@string/don_t_have_an_account" />
 
         <Button
             android:id="@+id/btnSignUp"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:gravity="center"
             android:backgroundTint="@color/white"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textColor="@color/purple_500" />
     </LinearLayout>
 

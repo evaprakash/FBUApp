@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Iris</string>
-    <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
@@ -9,4 +8,10 @@
     <string name="share">Share</string>
     <string name="write_a_message">Write a message...</string>
     <string name="attach_photo">Attach photo</string>
+    <string name="tv_description">trying to look hipster</string>
+    <string name="likes_hint">0</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back_to_feed">Back to feed</string>
+    <string name="view_all_comments">View all comments</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/padding"
     android:orientation="vertical"
     tools:context=".DetailsActivity">
 
@@ -12,7 +12,6 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -28,18 +27,23 @@
         android:id="@+id/caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/viewAllComments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View all comments" />
+        android:text="@string/view_all_comments" />
 
     <TextView
         android:id="@+id/createdAt"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="right"
+        android:text="@string/back_to_feed" />
 </LinearLayout>

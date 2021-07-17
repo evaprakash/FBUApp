@@ -2,8 +2,11 @@ package com.example.fbuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ImageView imagePost;
     private TextView caption;
     private TextView createdAt;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
         imagePost = findViewById(R.id.imagePost);
         caption = findViewById(R.id.caption);
         createdAt = findViewById(R.id.createdAt);
+        btnBack = findViewById(R.id.btnBack);
 
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra("post"));
 
@@ -37,6 +42,15 @@ public class DetailsActivity extends AppCompatActivity {
         caption.setText(post.getDescription());
         Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
         createdAt.setText(calculateTimeAgo(post.getCreatedAt()));
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 

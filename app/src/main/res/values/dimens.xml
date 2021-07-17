@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="top_margin">8dp</dimen>
+    <dimen name="bottom_margin">8dp</dimen>
+    <dimen name="vertical_margin">10dp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="layout_height">300dp</dimen>
+    <dimen name="layout_width">150dp</dimen>
+    <dimen name="layout_height_icon">150dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="msg_width">160dp</dimen>
+    <dimen name="heart_dim">70dp</dimen>
+</resources>

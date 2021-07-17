@@ -2,6 +2,8 @@ package com.example.fbuapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
@@ -65,8 +68,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         TextView tvDescription;
         TextView tvName;
         ImageView ivImage;
+        ImageView postLike;
         ImageButton heart;
         TextView numLikes;
+        AnimatedVectorDrawableCompat avd;
+        AnimatedVectorDrawable avd2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +81,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivImage = itemView.findViewById(R.id.ivImage);
             heart = itemView.findViewById(R.id.heart);
             numLikes = itemView.findViewById(R.id.numLikes);
+            postLike = itemView.findViewById(R.id.postLike);
+
         }
 
         public void bind(Post post) {
@@ -86,12 +94,24 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             }
             numLikes.setText(String.valueOf(post.getNumLikes()));
 
+            final Drawable drawable = postLike.getDrawable();
+
             heart.setOnTouchListener(new View.OnTouchListener() {
                 GestureDetector gestureDetector = new GestureDetector(context.getApplicationContext(), new GestureDetector.SimpleOnGestureListener(){
                     @Override
                     public boolean onDoubleTap(MotionEvent e) {
                         if (post.hasLiked(ParseUser.getCurrentUser()) == false) {
                             post.like(ParseUser.getCurrentUser());
+
+                            postLike.setAlpha(0.70f);
+                            if (drawable instanceof AnimatedVectorDrawableCompat) {
+                                avd = (AnimatedVectorDrawableCompat) drawable;
+                                avd.start();
+                            } else if (drawable instanceof AnimatedVectorDrawable) {
+                                avd2 = (AnimatedVectorDrawable) drawable;
+                                avd2.start();
+                            }
+
                             heart.setImageResource(R.drawable.ic_baseline_favorite_24);
                             numLikes.setText(String.valueOf(post.getNumLikes()));
                         }
