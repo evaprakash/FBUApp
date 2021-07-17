@@ -33,7 +33,7 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * User can post to their feed
 * User can like/comment on other posts
    * Double tap to like
-   * Animate post growing when tapped
+   * Animate heart over post when liking
 * Difficult/ambiguous technical problem (finding "best" resources for user based on their needs)
    * User can enter preferences in a number of different categories (i.e. resource type, location radius, price, rating, hours)
    * Find and rank filtered resources based on their preferences
