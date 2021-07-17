@@ -96,9 +96,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 ### Milestones
 
 * Week 1: Build out the skeleton of app
-   [X] Log in/sign up/logout
-   [X] Fragments for make post (no picture required), home feed, personal profile, search 
-   [X] Enable likes on posts (double tapping, animation)
+   * [X] Log in/sign up/logout
+   * [X] Fragments for make post (no picture required), home feed, personal profile, search 
+   * [X] Enable likes on posts (double tapping, animation)
 * Week 2: Build out core features, with a focus on your difficult/ambiguous technical problem(s)
    * Fix likes persistency / add comments
    * Personal profile grid view
