@@ -1,4 +1,4 @@
-# *App Title Pending*
+# *Iris*
 
 ## Table of Contents
 1. [Overview](#Overview)
