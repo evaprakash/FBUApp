@@ -1,4 +1,4 @@
-# *App Title Pending*
+# *Iris*
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -33,7 +33,7 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * User can post to their feed
 * User can like/comment on other posts
    * Double tap to like
-   * Animate post growing when tapped
+   * Animate heart over post when liking
 * Difficult/ambiguous technical problem (finding "best" resources for user based on their needs)
    * User can enter preferences in a number of different categories (i.e. resource type, location radius, price, rating, hours)
    * Find and rank filtered resources based on their preferences
@@ -96,10 +96,12 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 ### Milestones
 
 * Week 1: Build out the skeleton of app
-   * Log in/sign up/logout
-   * Make post (no picture required), home feed, personal profile (grid view)
-   * Enable likes/comments on posts
+   * [X] Log in/sign up/logout
+   * [X] Fragments for make post (no picture required), home feed, personal profile, search 
+   * [X] Enable likes on posts (double tapping, animation)
 * Week 2: Build out core features, with a focus on your difficult/ambiguous technical problem(s)
+   * Fix likes persistency / add comments
+   * Personal profile grid view
    * Enable user to input preferences in given categories
    * Use Yelp API to extract relevant information in categories
 * Week 3: Complete remaining core features, Start on complex algorithm part
