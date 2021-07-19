@@ -20,6 +20,7 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
 
+    //Not sure which data type to save likes in in Parse and how to retrive those likes from Parse
     public List<ParseUser> likes = new ArrayList<>();
 
     public String getDescription() {
