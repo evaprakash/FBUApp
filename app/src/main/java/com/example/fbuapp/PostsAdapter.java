@@ -124,22 +124,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     return false;
                 }
             });
-            /*
-            heart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (post.hasLiked(ParseUser.getCurrentUser()) == false) {
-                        post.like(ParseUser.getCurrentUser());
-                        heart.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        numLikes.setText(String.valueOf(post.getNumLikes()));
-                    } else {
-                        post.unlike(ParseUser.getCurrentUser());
-                        heart.setImageResource(R.drawable.ic_outline_favorite_border_24);
-                        numLikes.setText(String.valueOf(post.getNumLikes()));
-                    }
-                }
-            });
-            */
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

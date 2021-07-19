@@ -20,7 +20,7 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
 
-    public static List<ParseUser> likes = new ArrayList<>();
+    public List<ParseUser> likes = new ArrayList<>();
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
