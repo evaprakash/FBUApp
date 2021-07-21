@@ -56,8 +56,6 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Creation
     * User can create new post
     * User can like/comment on other posts
-* Profile
-    * User can view their identity and stats
 * Map View
     * Link to resources
     * View results page after entering resources
@@ -82,8 +80,6 @@ The goal of this app is to connect domestic violence/SA victims with each other 
     * Scroll through feed, like posts
 * Creation screen
     * View post details, comment
-* Profile Screen
-    * View user details
 * Map Screen
     * Filter resources by preferences
     * Results page
@@ -101,7 +97,6 @@ The goal of this app is to connect domestic violence/SA victims with each other 
    * [X] Enable likes on posts (double tapping, animation)
 * Week 2: Build out core features, with a focus on your difficult/ambiguous technical problem(s)
    * Fix likes persistency / add comments
-   * Personal profile grid view
    * Enable user to input preferences in given categories
    * Use Yelp API to extract relevant information in categories
 * Week 3: Complete remaining core features, Start on complex algorithm part
@@ -111,6 +106,7 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Week 4: Polish / Stretch goals
    * Password-protected feed
    * UI fixes in feed/resource finding
+   * Personal profile grid view
 
 ### [BONUS] Digital Wireframes & Mockups
 
