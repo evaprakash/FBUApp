@@ -129,8 +129,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     protected void queryComments(Post post) {
         ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
-        query.whereEqualTo(Comment.KEY_POST, post);
-        query.include(Comment.KEY_POST);
+        query.whereEqualTo("postObjectID", post.getObjectId());
+        query.include("user");
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
         query.findInBackground(new FindCallback<Comment>() {
             @Override
@@ -138,6 +138,9 @@ public class DetailsActivity extends AppCompatActivity {
                 if (exception != null) {
                     Log.e(TAG, "Issue with getting comments", exception);
                     return;
+                }
+                for (Comment comment : comments) {
+                    Log.i(TAG, "Comment: " + comment.getUser().getUsername());
                 }
                 allComments.addAll(comments);
                 adapter.notifyDataSetChanged();

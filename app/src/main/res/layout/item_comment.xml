@@ -10,7 +10,7 @@
         android:id="@+id/commentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/padding"
+        android:layout_marginRight="5dp"
         android:hint="@string/username"
         android:textStyle="bold" />
 

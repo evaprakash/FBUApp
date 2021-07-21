@@ -101,9 +101,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             final Drawable drawable = postLike.getDrawable();
 
-            //if (post.hasLiked(ParseUser.getCurrentUser())) {
-            //    heart.setImageResource(R.drawable.ic_baseline_favorite_24);
-            //}
+            if (post.hasLiked(ParseUser.getCurrentUser())) {
+                heart.setImageResource(R.drawable.ic_baseline_favorite_24);
+            }
 
             heart.setOnTouchListener(new View.OnTouchListener() {
                 GestureDetector gestureDetector = new GestureDetector(context.getApplicationContext(), new GestureDetector.SimpleOnGestureListener(){

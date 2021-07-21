@@ -1,5 +1,7 @@
 package com.example.fbuapp;
 
+import android.util.Log;
+
 import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
@@ -76,9 +78,11 @@ public class Post extends ParseObject {
         for (int i = 0; i < likes.size(); i++) {
             ParseUser p = likes.get(i);
             if (user.getObjectId().equals(p.getObjectId())) {
+                Log.e("Post", "True");
                 return true;
             }
         }
+        Log.e("Post", "False");
         return false;
     }
 

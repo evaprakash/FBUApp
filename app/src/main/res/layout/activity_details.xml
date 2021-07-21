@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/imagePost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         tools:layout_editor_absoluteX="75dp"
         tools:layout_editor_absoluteY="118dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -32,7 +32,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComments"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="150dp" />
 
     <EditText
         android:id="@+id/writeComment"
