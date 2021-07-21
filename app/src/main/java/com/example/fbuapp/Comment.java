@@ -23,14 +23,12 @@ public class Comment extends ParseObject {
         put(KEY_CONTENT, content);
     }
 
-    //In Parse DB, Comment has a pointer to the corresponding Post. Not sure how to get that pointer?
-
-    public void getPost() {
-        return;
+    public Post getPost() {
+        return (Post) getParseObject(KEY_POST);
     }
 
-    public void setPost() {
-        return;
+    public void setPost(Post post) {
+        put(KEY_POST, post);
     }
 
     public ParseUser getUser() {

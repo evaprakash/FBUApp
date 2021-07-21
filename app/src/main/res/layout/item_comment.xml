@@ -3,22 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/comment"
+    <TextView
+        android:id="@+id/commentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="68dp" />
+        android:layout_marginRight="@dimen/padding"
+        android:hint="@string/username"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnPost"
+    <TextView
+        android:id="@+id/commentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post" />
+        android:hint="@string/comment_content"/>
 </LinearLayout>

@@ -19,9 +19,24 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
+    public static final String KEY_LIKES= "likes";
 
-    //Not sure which data type to save likes in in Parse and how to retrive those likes from Parse
-    public List<ParseUser> likes = new ArrayList<>();
+    //public List<ParseUser> likes = new ArrayList<>();
+
+    public List<ParseUser> getLikes() {
+        List<ParseUser> likes = (List<ParseUser>) get(KEY_LIKES);
+        if (likes == null) {
+            return new ArrayList<>();
+        } else {
+            return likes;
+        }
+    }
+
+    public void setLikes(ParseUser user) {
+        List<ParseUser> likes = getLikes();
+        likes.add(user);
+        put(KEY_LIKES, likes);
+    }
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -48,23 +63,23 @@ public class Post extends ParseObject {
     }
 
     public int getNumLikes() {
+        List<ParseUser> likes = getLikes();
         return likes.size();
     }
 
-    public void like(ParseUser user) {
-        likes.add(user);
-    }
-
-    public void unlike(ParseUser user) {
-        likes.remove(user);
-    }
+//    public void unlike(ParseUser user) {
+//        likes.remove(user);
+//    }
 
     public boolean hasLiked(ParseUser user) {
-        if (likes.contains(user)) {
-            return true;
-        } else {
-            return false;
+        List<ParseUser> likes = getLikes();
+        for (int i = 0; i < likes.size(); i++) {
+            ParseUser p = likes.get(i);
+            if (user.getObjectId().equals(p.getObjectId())) {
+                return true;
+            }
         }
+        return false;
     }
 
 }

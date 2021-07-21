@@ -1,29 +1,47 @@
 package com.example.fbuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    private final String TAG = "DetailsActivity";
     private Post post;
     private TextView username;
     private ImageView imagePost;
     private TextView caption;
     private TextView createdAt;
-    private Button btnBack;
+    private EditText writeComment;
+    private Button btnComment;
+    private RecyclerView rvComments;
+    protected CommentAdapter adapter;
+    protected List<Comment> allComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +52,42 @@ public class DetailsActivity extends AppCompatActivity {
         imagePost = findViewById(R.id.imagePost);
         caption = findViewById(R.id.caption);
         createdAt = findViewById(R.id.createdAt);
-        btnBack = findViewById(R.id.btnBack);
-
+        writeComment = findViewById(R.id.writeComment);
+        btnComment = findViewById(R.id.btnComment);
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra("post"));
-
+        rvComments = findViewById(R.id.rvComments);
+        allComments= new ArrayList<>();
+        adapter = new CommentAdapter(getApplicationContext(), allComments);
+        rvComments.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rvComments.setLayoutManager(linearLayoutManager);
+        queryComments(post);
         username.setText(post.getUser().getUsername());
         caption.setText(post.getDescription());
         Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
         createdAt.setText(calculateTimeAgo(post.getCreatedAt()));
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetailsActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
+                Comment comment = new Comment();
+                comment.setPost(post);
+                comment.setUser(ParseUser.getCurrentUser());
+                comment.setContent(writeComment.getText().toString());
+                comment.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException exception) {
+                        if (exception != null) {
+                            Log.e(TAG, "Error while saving", exception);
+                            return;
+                        } else {
+                            writeComment.setText("");
+                        }
+                    }
+                });
             }
         });
+
 
     }
 
@@ -88,5 +125,23 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         return "";
+    }
+
+    protected void queryComments(Post post) {
+        ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
+        query.whereEqualTo(Comment.KEY_POST, post);
+        query.include(Comment.KEY_POST);
+        query.addDescendingOrder(Post.KEY_CREATED_KEY);
+        query.findInBackground(new FindCallback<Comment>() {
+            @Override
+            public void done(List<Comment> comments, ParseException exception) {
+                if (exception != null) {
+                    Log.e(TAG, "Issue with getting comments", exception);
+                    return;
+                }
+                allComments.addAll(comments);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

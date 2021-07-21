@@ -12,7 +12,7 @@ public class ParseApplication extends Application {
         super.onCreate();
 
         ParseObject.registerSubclass(Post.class);
-
+        ParseObject.registerSubclass(Comment.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("YN2hYQ86lkNzzMBKblzbrtIymW1XF2U53qgbnu9E")
                 .clientKey("WJ7uWUbVc1gIO6MPAlRAnTDFNz9jRdjckuvZLOLf")

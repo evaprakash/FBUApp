@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,14 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
@@ -28,6 +32,7 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
+    private final String TAG = "PostsAdapter";
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -96,12 +101,28 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             final Drawable drawable = postLike.getDrawable();
 
+            //if (post.hasLiked(ParseUser.getCurrentUser())) {
+            //    heart.setImageResource(R.drawable.ic_baseline_favorite_24);
+            //}
+
             heart.setOnTouchListener(new View.OnTouchListener() {
                 GestureDetector gestureDetector = new GestureDetector(context.getApplicationContext(), new GestureDetector.SimpleOnGestureListener(){
                     @Override
                     public boolean onDoubleTap(MotionEvent e) {
                         if (post.hasLiked(ParseUser.getCurrentUser()) == false) {
-                            post.like(ParseUser.getCurrentUser());
+                            post.setLikes(ParseUser.getCurrentUser());
+                            post.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException exception) {
+                                    if (exception != null) {
+                                        Log.e(TAG, "Error while saving", exception);
+                                        return;
+                                    }
+                                    heart.setImageResource(R.drawable.ic_baseline_favorite_24);
+                                    numLikes.setText(String.valueOf(post.getNumLikes()));
+                                    notifyDataSetChanged();
+                                }
+                            });
 
                             postLike.setAlpha(0.70f);
                             if (drawable instanceof AnimatedVectorDrawableCompat) {
@@ -112,8 +133,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                                 avd2.start();
                             }
 
-                            heart.setImageResource(R.drawable.ic_baseline_favorite_24);
-                            numLikes.setText(String.valueOf(post.getNumLikes()));
+
                         }
                         return super.onDoubleTap(e);
                     }
@@ -128,12 +148,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //if (image == null) {
+                    //    return;
+                    //}
                     Intent intent = new Intent(context, DetailsActivity.class);
                     intent.putExtra("post", Parcels.wrap(post));
                     context.startActivity(intent);
                 }
             });
-
 
         }
     }
