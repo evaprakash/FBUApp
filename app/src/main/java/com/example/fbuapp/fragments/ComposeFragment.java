@@ -86,8 +86,6 @@ public class ComposeFragment extends Fragment {
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null) {
-                //    Toast.makeText(getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
-                //    return;
                     isPhoto = false;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();

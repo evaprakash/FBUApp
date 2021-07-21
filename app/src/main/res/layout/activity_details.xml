@@ -29,10 +29,17 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvComments"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainerComments"
         android:layout_width="wrap_content"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        tools:context=".DetailsActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <EditText
         android:id="@+id/writeComment"

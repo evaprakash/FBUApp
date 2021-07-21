@@ -11,7 +11,7 @@ import org.parceler.Parcel;
 public class Comment extends ParseObject {
 
     public static final String KEY_CONTENT = "content";
-    public static final String KEY_POST = "post";
+    public static final String KEY_POST_ID = "postObjectID";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
 
@@ -23,12 +23,12 @@ public class Comment extends ParseObject {
         put(KEY_CONTENT, content);
     }
 
-    public Post getPost() {
-        return (Post) getParseObject(KEY_POST);
+    public String getPostID() {
+        return getString(KEY_POST_ID);
     }
 
-    public void setPost(Post post) {
-        put(KEY_POST, post);
+    public void setPostID(String postID) {
+        put(KEY_POST_ID, postID);
     }
 
     public ParseUser getUser() {

@@ -110,7 +110,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     @Override
                     public boolean onDoubleTap(MotionEvent e) {
                         if (post.hasLiked(ParseUser.getCurrentUser()) == false) {
-                            post.setLikes(ParseUser.getCurrentUser());
+                            post.addLike(ParseUser.getCurrentUser());
                             post.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException exception) {
@@ -134,6 +134,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                             }
 
 
+                        } else {
+                            post.removeLike(ParseUser.getCurrentUser());
+                            post.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException exception) {
+                                    if (exception != null) {
+                                        Log.e(TAG, "Error while saving", exception);
+                                        return;
+                                    }
+                                    heart.setImageResource(R.drawable.ic_outline_favorite_border_24);
+                                    numLikes.setText(String.valueOf(post.getNumLikes()));
+                                    notifyDataSetChanged();
+                                }
+                            });
                         }
                         return super.onDoubleTap(e);
                     }

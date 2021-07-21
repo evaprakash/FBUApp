@@ -23,8 +23,6 @@ public class Post extends ParseObject {
     public static final String KEY_CREATED_KEY = "createdAt";
     public static final String KEY_LIKES= "likes";
 
-    //public List<ParseUser> likes = new ArrayList<>();
-
     public List<ParseUser> getLikes() {
         List<ParseUser> likes = (List<ParseUser>) get(KEY_LIKES);
         if (likes == null) {
@@ -34,7 +32,7 @@ public class Post extends ParseObject {
         }
     }
 
-    public void setLikes(ParseUser user) {
+    public void addLike(ParseUser user) {
         List<ParseUser> likes = getLikes();
         likes.add(user);
         put(KEY_LIKES, likes);
@@ -69,9 +67,19 @@ public class Post extends ParseObject {
         return likes.size();
     }
 
-//    public void unlike(ParseUser user) {
-//        likes.remove(user);
-//    }
+    public void removeLike(ParseUser user) {
+        List<ParseUser> likes = getLikes();
+        List<ParseUser> newLikes = new ArrayList<>();
+        for (int i = 0; i < likes.size(); i++) {
+            ParseUser p = likes.get(i);
+            if (user.getObjectId().equals(p.getObjectId())) {
+                continue;
+            } else {
+                newLikes.add(p);
+            }
+        }
+        put(KEY_LIKES, newLikes);
+    }
 
     public boolean hasLiked(ParseUser user) {
         List<ParseUser> likes = getLikes();

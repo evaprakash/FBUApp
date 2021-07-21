@@ -3,6 +3,7 @@ package com.example.fbuapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ public class DetailsActivity extends AppCompatActivity {
     private RecyclerView rvComments;
     protected CommentAdapter adapter;
     protected List<Comment> allComments;
+    private SwipeRefreshLayout swipeContainerComments;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +70,24 @@ public class DetailsActivity extends AppCompatActivity {
         Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
         createdAt.setText(calculateTimeAgo(post.getCreatedAt()));
 
+        swipeContainerComments = (SwipeRefreshLayout) findViewById(R.id.swipeContainerComments);
+        swipeContainerComments.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchTimelineAsync(0, post);
+            }
+        });
+
+        swipeContainerComments.setColorSchemeResources(android.R.color.holo_purple,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Comment comment = new Comment();
-                comment.setPost(post);
+                comment.setPostID(post.getObjectId());
                 comment.setUser(ParseUser.getCurrentUser());
                 comment.setContent(writeComment.getText().toString());
                 comment.saveInBackground(new SaveCallback() {
@@ -129,8 +145,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     protected void queryComments(Post post) {
         ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
-        query.whereEqualTo("postObjectID", post.getObjectId());
-        query.include("user");
+        query.whereEqualTo(Comment.KEY_POST_ID, post.getObjectId());
+        query.include(Comment.KEY_USER);
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
         query.findInBackground(new FindCallback<Comment>() {
             @Override
@@ -146,5 +162,11 @@ public class DetailsActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void fetchTimelineAsync(int page, Post post) {
+        adapter.clear();
+        queryComments(post);
+        swipeContainerComments.setRefreshing(false);
     }
 }
