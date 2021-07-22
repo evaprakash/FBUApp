@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import com.example.fbuapp.R;
 import com.example.fbuapp.YelpService;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 
@@ -51,12 +54,20 @@ public class SearchFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         YelpService yelpService = retrofit.create(YelpService.class);
-        Call<ResponseBody> call = yelpService.filteredSearch(AUTH_HEADER, "Starbucks", "California");
+        Call<ResponseBody> call = yelpService.filteredSearch("Starbucks", "California");
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 int statusCode = response.code();
-                ResponseBody user = response.body();
+                JSONObject content = null;
+                try {
+                    content = new JSONObject(response.body().string());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Log.i(TAG, String.valueOf(content));
                 Log.i(TAG, String.valueOf(response) + " " + response.isSuccessful());
             }
 
