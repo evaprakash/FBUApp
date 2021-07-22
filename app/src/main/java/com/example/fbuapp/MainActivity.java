@@ -51,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_logout:
                     default:
-                        fragment = new PostsFragment();
+                        fragment = null;
                         logOut();
                         break;
                 }
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                if (fragment != null) {
+                    fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                }
                 return true;
             }
         });
