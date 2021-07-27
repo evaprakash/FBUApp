@@ -65,14 +65,6 @@ public class SearchFragment extends Fragment {
         price = view.findViewById(R.id.price);
         btnSearch = view.findViewById(R.id.btnSearch);
 
-        String termContent = term.getText().toString();
-        String locationContent = location.getText().toString();
-        //java.lang.NumberFormatException: For input string: ""
-        //String radiusContent = term.getText().toString();
-        String categoryContent = category.getText().toString();
-        String priceContent = price.getText().toString();
-        System.out.println("!!! " + locationContent + " " + categoryContent + " " + priceContent);
-
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +73,12 @@ public class SearchFragment extends Fragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 YelpService yelpService = retrofit.create(YelpService.class);
-                System.out.println("!!! " + locationContent + " " + categoryContent + " " + priceContent);
-                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, priceContent);
+                String termContent = term.getText().toString();
+                String locationContent = location.getText().toString();
+                int radiusContent = Integer.parseInt(radius.getText().toString());
+                String categoryContent = category.getText().toString();
+                String priceContent = price.getText().toString();
+                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, radiusContent, categoryContent, priceContent);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
