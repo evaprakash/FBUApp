@@ -96,9 +96,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
    * [X] Fragments for make post (no picture required), home feed, personal profile, search 
    * [X] Enable likes on posts (double tapping, animation)
 * Week 2: Build out core features, with a focus on your difficult/ambiguous technical problem(s)
-   * Fix likes persistency / add comments
-   * Enable user to input preferences in given categories
-   * Use Yelp API to extract relevant information in categories
+   * [X] Fix likes persistency / add comments
+   * [X] Enable user to input preferences in given categories
+   * [X] Use Yelp API to extract relevant information in categories
 * Week 3: Complete remaining core features, Start on complex algorithm part
    * Determine ranking system for best correlating preferences with Yelp categories
 * Week 3: Complete Complex algorithm part and wrap up any remaining features
