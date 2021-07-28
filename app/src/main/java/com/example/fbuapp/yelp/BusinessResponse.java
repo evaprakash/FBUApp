@@ -1,8 +1,5 @@
 package com.example.fbuapp.yelp;
 
-import android.graphics.Movie;
-
-import com.bumptech.glide.load.engine.Resource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

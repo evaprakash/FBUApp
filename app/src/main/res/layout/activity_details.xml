@@ -18,9 +18,7 @@
     <ImageView
         android:id="@+id/imagePost"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="118dp"
+        android:layout_height="@dimen/image_post_height"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -32,13 +30,13 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainerComments"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/rv_height"
         tools:context=".activities.DetailsActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvComments"
             android:layout_width="wrap_content"
-            android:layout_height="150dp" />
+            android:layout_height="@dimen/rv_height" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <EditText
@@ -52,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Comment" />
+        android:text="@string/comment" />
 
     <TextView
         android:id="@+id/createdAt"

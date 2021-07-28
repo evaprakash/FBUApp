@@ -43,14 +43,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private final String BASE_URL = "https://api.yelp.com/v3/";
-    private final String API_KEY = "LNaxxtZQkOaK1kgcOt5GWyR03XLK9f845_ERPH-OkWHT0uid2MGrwgbkwRjSljBwbiqrCIgQ_HmOe_9AmXbaEmZphE0iuub830kk4yuqn4HX7cQZ8JKJH_1T-N34YHYx";
-    private final String AUTH_HEADER = "Bearer " + API_KEY;
     private final String TAG = "SearchFragment";
     private EditText term;
     private EditText location;
-    private EditText radius;
-    private EditText category;
-    private EditText price;
     private Button btnSearch;
 
     public SearchFragment() {
@@ -132,7 +127,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                         try {
                             jsonResponse = new JSONObject(response.body().string());
                             BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
-                            String test= businessResponse.getResources().get(0).getName();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
