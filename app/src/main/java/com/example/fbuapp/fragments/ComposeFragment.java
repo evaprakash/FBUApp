@@ -20,12 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fbuapp.BitmapScaler;
-import com.example.fbuapp.Post;
+import com.example.fbuapp.posts.Post;
 import com.example.fbuapp.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;

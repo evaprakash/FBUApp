@@ -1,8 +1,7 @@
-package com.example.fbuapp;
+package com.example.fbuapp.posts;
 
 import android.util.Log;
 
-import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;

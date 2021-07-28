@@ -15,4 +15,25 @@
     <string name="back_to_feed">Back to feed</string>
     <string name="view_all_comments">View all comments</string>
     <string name="comment_content">Comment content</string>
+    <string-array name="category_array">
+        <item>Homeless shelters</item>
+        <item>Food banks</item>
+        <item>Pharmacy</item>
+        <item>Counseling and Mental Health</item>
+        <item>Hospitals</item>
+        <item>Hotels</item>
+        <item>Community Centers</item>
+        <item>Police departments</item>
+    </string-array>
+    <string-array name="price_array">
+        <item>Cheap</item>
+        <item>Medium</item>
+        <item>Expensive</item>
+    </string-array>
+    <string-array name="transportation_array">
+        <item>Walking</item>
+        <item>Bicycle</item>
+        <item>Automobile</item>
+        <item>Transit</item>
+    </string-array>
 </resources>

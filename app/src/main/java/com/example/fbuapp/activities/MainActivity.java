@@ -1,4 +1,4 @@
-package com.example.fbuapp;
+package com.example.fbuapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.fbuapp.R;
 import com.example.fbuapp.fragments.ComposeFragment;
 import com.example.fbuapp.fragments.PostsFragment;
 import com.example.fbuapp.fragments.ProfileFragment;

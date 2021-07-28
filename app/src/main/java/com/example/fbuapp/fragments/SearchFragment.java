@@ -5,8 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private final String BASE_URL = "https://api.yelp.com/v3/";
     private final String API_KEY = "LNaxxtZQkOaK1kgcOt5GWyR03XLK9f845_ERPH-OkWHT0uid2MGrwgbkwRjSljBwbiqrCIgQ_HmOe_9AmXbaEmZphE0iuub830kk4yuqn4HX7cQZ8JKJH_1T-N34YHYx";
     private final String AUTH_HEADER = "Bearer " + API_KEY;
@@ -60,9 +64,29 @@ public class SearchFragment extends Fragment {
 
         term = view.findViewById(R.id.term);
         location = view.findViewById(R.id.location);
-        radius = view.findViewById(R.id.radius);
-        category = view.findViewById(R.id.category);
-        price = view.findViewById(R.id.price);
+
+        Spinner category_spinner = (Spinner) view.findViewById(R.id.category_spinner);
+        ArrayAdapter<CharSequence> category_adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.category_array, android.R.layout.simple_spinner_item);
+        category_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category_spinner.setAdapter(category_adapter);
+        category_spinner.setOnItemSelectedListener(this);
+
+
+        Spinner price_spinner = (Spinner) view.findViewById(R.id.price_spinner);
+        ArrayAdapter<CharSequence> price_adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.price_array, android.R.layout.simple_spinner_item);
+        price_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        price_spinner.setAdapter(price_adapter);
+        price_spinner.setOnItemSelectedListener(this);
+
+        Spinner transportation_spinner = (Spinner) view.findViewById(R.id.transportation_spinner);
+        ArrayAdapter<CharSequence> transportation_adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.transportation_array, android.R.layout.simple_spinner_item);
+        transportation_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transportation_spinner.setAdapter(transportation_adapter);
+        transportation_spinner.setOnItemSelectedListener(this);
+
         btnSearch = view.findViewById(R.id.btnSearch);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +99,26 @@ public class SearchFragment extends Fragment {
                 YelpService yelpService = retrofit.create(YelpService.class);
                 String termContent = term.getText().toString();
                 String locationContent = location.getText().toString();
-                int radiusContent = Integer.parseInt(radius.getText().toString());
-                String categoryContent = category.getText().toString();
-                String priceContent = price.getText().toString();
-                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, radiusContent, categoryContent, priceContent);
+
+                String rawCategoryContent = category_spinner.getSelectedItem().toString();
+                String categoryContent;
+                if (rawCategoryContent.equals("Counseling and Mental Health")) {
+                    categoryContent = "c_and_mh";
+                } else {
+                    categoryContent = rawCategoryContent.replaceAll("\\s", "").toLowerCase();
+                }
+
+                String rawPriceContent = price_spinner.getSelectedItem().toString().toLowerCase();
+                String priceContent;
+                if (rawPriceContent.equals("expensive")) {
+                    priceContent="4";
+                } else if (rawPriceContent.equals("medium")) {
+                    priceContent = "2, 3";
+                } else {
+                    priceContent="1";
+                }
+
+                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, priceContent);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -102,5 +142,16 @@ public class SearchFragment extends Fragment {
                 });
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this.getContext(), text, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

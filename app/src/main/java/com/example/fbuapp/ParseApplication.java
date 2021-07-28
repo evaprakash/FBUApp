@@ -1,5 +1,7 @@
 package com.example.fbuapp;
 
+import com.example.fbuapp.comments.Comment;
+import com.example.fbuapp.posts.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 

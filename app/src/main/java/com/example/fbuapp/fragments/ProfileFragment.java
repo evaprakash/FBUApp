@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fbuapp.Post;
-import com.example.fbuapp.PostsAdapter;
+import com.example.fbuapp.posts.Post;
+import com.example.fbuapp.posts.PostsAdapter;
 import com.example.fbuapp.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;

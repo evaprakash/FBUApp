@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:layout_margin="@dimen/padding"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/flContainer"
