@@ -10,14 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessResponse {
-    List<Business> resources;
+    int total;
+    List<Business> businesses;
+
 
     public BusinessResponse() {
-        resources = new ArrayList<Business>();
+        businesses = new ArrayList<Business>();
     }
 
     public List<Business> getResources() {
-        return resources;
+        return businesses;
     }
 
     public static BusinessResponse parseJSON(String jsonResponse) {

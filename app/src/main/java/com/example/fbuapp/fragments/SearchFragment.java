@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fbuapp.R;
+import com.example.fbuapp.yelp.Business;
 import com.example.fbuapp.yelp.BusinessResponse;
 import com.example.fbuapp.yelp.YelpService;
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 
 import okhttp3.ResponseBody;
@@ -130,7 +132,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                         try {
                             jsonResponse = new JSONObject(response.body().string());
                             BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
-                            String test = businessResponse.getResources().get(0).getName();
+                            String test= businessResponse.getResources().get(0).getName();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
