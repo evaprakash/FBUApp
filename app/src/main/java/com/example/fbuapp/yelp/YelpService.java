@@ -1,4 +1,4 @@
-package com.example.fbuapp;
+package com.example.fbuapp.yelp;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

@@ -17,7 +17,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fbuapp.R;
-import com.example.fbuapp.YelpService;
+import com.example.fbuapp.yelp.BusinessResponse;
+import com.example.fbuapp.yelp.YelpService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -123,15 +126,17 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         int statusCode = response.code();
-                        JSONObject content = null;
+                        JSONObject jsonResponse = null;
                         try {
-                            content = new JSONObject(response.body().string());
+                            jsonResponse = new JSONObject(response.body().string());
+                            BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
+                            String test = businessResponse.getResources().get(0).getName();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Log.i(TAG, String.valueOf(content));
+                        Log.i(TAG, String.valueOf(jsonResponse));
                         Log.i(TAG, String.valueOf(response) + " " + response.isSuccessful());
                     }
 
