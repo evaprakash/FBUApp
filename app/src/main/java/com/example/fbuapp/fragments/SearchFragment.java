@@ -100,7 +100,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                 YelpService yelpService = retrofit.create(YelpService.class);
                 String termContent = term.getText().toString();
                 String locationContent = location.getText().toString();
-                String transportationContent = category_spinner.getSelectedItem().toString().toLowerCase();
+                String transportationContent = transportation_spinner.getSelectedItem().toString().toLowerCase();
                 String rawCategoryContent = category_spinner.getSelectedItem().toString();
                 String categoryContent;
                 if (rawCategoryContent.equals("Counseling and Mental Health")) {
@@ -119,7 +119,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                     priceContent="1";
                 }
 
-                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent);
+                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, "review_count");
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -129,6 +129,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                             jsonResponse = new JSONObject(response.body().string());
                             BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
                             Ranking ranking = new Ranking(businessResponse.getResources(), priceContent, transportationContent);
+                            ranking.rank();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
