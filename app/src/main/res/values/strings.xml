@@ -21,7 +21,7 @@
     <string name="price">Price</string>
     <string name="enter_location">Enter location</string>
     <string name="location">Location</string>
-    <string name="enter_keyword">Enter keyword (or None)</string>
+    <string name="enter_keyword">Enter keyword (optional)</string>
     <string name="keyword">Keyword</string>
     <string name="category">Category</string>
     <string-array name="category_array">

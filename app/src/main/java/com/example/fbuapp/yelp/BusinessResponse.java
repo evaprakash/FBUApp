@@ -12,7 +12,7 @@ public class BusinessResponse {
 
 
     public BusinessResponse() {
-        businesses = new ArrayList<Business>();
+        this.businesses = new ArrayList<Business>();
     }
 
     public List<Business> getResources() {
