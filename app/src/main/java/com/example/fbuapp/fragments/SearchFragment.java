@@ -45,6 +45,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private final String BASE_URL = "https://api.yelp.com/v3/";
     private final String TAG = "SearchFragment";
+    private final String SORT_BY = "review_count";
+    private final int LIMIT = 50;
     private EditText term;
     private EditText location;
     private Button btnSearch;
@@ -119,7 +121,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                     priceContent="1";
                 }
 
-                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, "review_count");
+                Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, SORT_BY, LIMIT);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

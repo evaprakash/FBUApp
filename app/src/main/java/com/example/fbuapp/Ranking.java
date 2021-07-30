@@ -34,8 +34,55 @@ public class Ranking {
     }
 
     public void rank() {
+        int total = this.businesses.size();
         calculateDistanceScores();
-        int i = 1;
+        calculatePriceScores();
+        calculateRatingScores();
+        calculateOpenScores();
+        int[] indices = getIndicesArray(total);
+        int[] sortedIndices = mergeSort(indices, this.rankings);
+        List<Business> rankedBusinesses = new ArrayList<>();
+        for (int i = total - 1; i >= 0; i--) {
+            rankedBusinesses.add(this.businesses.get(sortedIndices[i]));
+        }
+        this.businesses = rankedBusinesses;
+    }
+
+    public void calculateOpenScores() {
+        int total = this.businesses.size();
+        for (int i = 0; i < total; i++) {
+            boolean currentIsClosed = this.businesses.get(i).getIsClosed();
+            if (!currentIsClosed) {
+                this.rankings[i] += OPEN_WEIGHT;
+            }
+        }
+    }
+
+    public void calculateRatingScores() {
+        int total = this.businesses.size();
+        for (int i = 0; i < total; i++) {
+            float currentRating = this.businesses.get(i).getRating();
+            int currentReviewCount = this.businesses.get(i).getReviewCount();
+            this.rankings[i] += RATING_WEIGHT * calculateRatingMetric(currentRating, currentReviewCount);
+        }
+    }
+
+    public void calculatePriceScores() {
+        int total = this.businesses.size();
+        for (int i = 0; i < total; i++) {
+            String currentPrice = this.businesses.get(i).getPrice();
+            if (this.price.equals("2, 3")) {
+                if (!"$$$$".equals(currentPrice)) {
+                    this.rankings[i] += PRICE_WEIGHT;
+                }
+            } else if (this.price.equals("1")) {
+                if ("$".equals(currentPrice)) {
+                    this.rankings[i] += PRICE_WEIGHT;
+                }
+            } else {
+                this.rankings[i] += PRICE_WEIGHT;
+            }
+        }
     }
 
     public int[] getIndicesArray(int N) {
@@ -48,37 +95,23 @@ public class Ranking {
 
     public void calculateDistanceScores() {
         int total = this.businesses.size();
-        float[] distances = new float[total];
         for (int i = 0; i < total; i++) {
-            distances[i] = this.businesses.get(i).getDistance();
-        }
-        int[] indices = getIndicesArray(total);
-        int[] sortedDistanceIndices = mergeSort(indices, distances);
-        for (int i = 0; i < total; i++) {
-            float currentDistance = distances[sortedDistanceIndices[i]];
+            float currentDistance = this.businesses.get(i).getDistance();
             if (this.transportation.equals("walking")) {
-                if (currentDistance > MAX_WALKING_DISTANCE + MAX_DISTANCE_PADDING) {
-                    this.rankings[sortedDistanceIndices[i]] =  0;
-                } else {
-                    this.rankings[sortedDistanceIndices[i]] =  DISTANCE_WEIGHT * 1/currentDistance;
+                if (currentDistance <= MAX_WALKING_DISTANCE + MAX_DISTANCE_PADDING) {
+                    this.rankings[i] = DISTANCE_WEIGHT * 1/currentDistance;
                 }
             } else if (this.transportation.equals("bicycle")) {
-                if (currentDistance > MAX_BICYCLE_DISTANCE + MAX_DISTANCE_PADDING) {
-                    this.rankings[sortedDistanceIndices[i]] =  0;
-                } else {
-                    this.rankings[sortedDistanceIndices[i]] =  DISTANCE_WEIGHT * 1/currentDistance;
+                if (currentDistance <= MAX_BICYCLE_DISTANCE + MAX_DISTANCE_PADDING) {
+                    this.rankings[i] =  DISTANCE_WEIGHT * 1/currentDistance;
                 }
             } else if (this.transportation.equals("transit")) {
-                if (currentDistance > MAX_TRANSIT_DISTANCE + MAX_DISTANCE_PADDING) {
-                    this.rankings[sortedDistanceIndices[i]] =  0;
-                } else {
-                    this.rankings[sortedDistanceIndices[i]] =  DISTANCE_WEIGHT * 1/currentDistance;
+                if (currentDistance <= MAX_TRANSIT_DISTANCE + MAX_DISTANCE_PADDING) {
+                    this.rankings[i] =  DISTANCE_WEIGHT * 1/currentDistance;
                 }
             } else {
-                if (currentDistance > MAX_WALKING_DISTANCE + MAX_DISTANCE_PADDING) {
-                    this.rankings[sortedDistanceIndices[i]] =  0;
-                } else {
-                    this.rankings[sortedDistanceIndices[i]] =  DISTANCE_WEIGHT * 1/currentDistance;
+                if (currentDistance <= MAX_AUTOMOBILE_DISTANCE + MAX_DISTANCE_PADDING) {
+                    this.rankings[i] =  DISTANCE_WEIGHT * 1/currentDistance;
                 }
             }
         }
