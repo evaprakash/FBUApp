@@ -19,7 +19,9 @@
         android:roundIcon="@drawable/iris_no_title"
         android:supportsRtl="true"
         android:theme="@style/Theme.FBUApp">
-        <activity android:name=".activities.DetailsActivity"></activity>
+        <activity android:name=".activities.BusinessDetailsActivity"></activity>
+        <activity android:name=".activities.BusinessActivity" />
+        <activity android:name=".activities.DetailsActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
@@ -29,6 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.codepath.fileprovider.FBUApp"

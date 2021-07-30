@@ -1,5 +1,6 @@
 package com.example.fbuapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,14 +19,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fbuapp.R;
 import com.example.fbuapp.Ranking;
-import com.example.fbuapp.yelp.Business;
-import com.example.fbuapp.yelp.BusinessResponse;
-import com.example.fbuapp.yelp.YelpService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.fbuapp.activities.BusinessActivity;
+import com.example.fbuapp.business.Business;
+import com.example.fbuapp.business.BusinessResponse;
+import com.example.fbuapp.business.YelpService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.List;
@@ -131,7 +132,9 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                             jsonResponse = new JSONObject(response.body().string());
                             BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
                             Ranking ranking = new Ranking(businessResponse.getResources(), priceContent, transportationContent);
-                            ranking.rank();
+                            List<Business> rankedBusinesses = ranking.rank();
+                            List<Float> rankings = ranking.getRankingsList();
+                            seeResults(rankedBusinesses, rankings);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -149,6 +152,13 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                 });
             }
         });
+    }
+
+    private void seeResults(List<Business> rankedBusinesses, List<Float> rankingsList) {
+        Intent intent = new Intent(getContext(), BusinessActivity.class);
+        intent.putExtra("rankedBusinesses", Parcels.wrap(rankedBusinesses));
+        intent.putExtra("rankingsList", Parcels.wrap(rankingsList));
+        getContext().startActivity(intent);
     }
 
     @Override

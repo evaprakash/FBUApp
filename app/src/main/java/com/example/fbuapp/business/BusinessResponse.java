@@ -1,4 +1,4 @@
-package com.example.fbuapp.yelp;
+package com.example.fbuapp.business;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

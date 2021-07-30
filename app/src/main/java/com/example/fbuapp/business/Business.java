@@ -1,5 +1,8 @@
-package com.example.fbuapp.yelp;
+package com.example.fbuapp.business;
 
+import org.parceler.Parcel;
+
+@Parcel(analyze = Business.class)
 public class Business {
     String name;
     String image_url;

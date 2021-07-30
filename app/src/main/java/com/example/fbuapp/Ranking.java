@@ -1,6 +1,6 @@
 package com.example.fbuapp;
 
-import com.example.fbuapp.yelp.Business;
+import com.example.fbuapp.business.Business;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,15 @@ public class Ranking {
         this.transportation = transportation;
     }
 
-    public void rank() {
+    public List<Float> getRankingsList() {
+        List<Float> rankingsList = new ArrayList<>();
+        for (int i = 0; i < this.rankings.length; i++) {
+            rankingsList.add(this.rankings[i]);
+        }
+        return rankingsList;
+    }
+
+    public List<Business> rank() {
         int total = this.businesses.size();
         calculateDistanceScores();
         calculatePriceScores();
@@ -46,6 +54,7 @@ public class Ranking {
             rankedBusinesses.add(this.businesses.get(sortedIndices[i]));
         }
         this.businesses = rankedBusinesses;
+        return this.businesses;
     }
 
     public void calculateOpenScores() {
