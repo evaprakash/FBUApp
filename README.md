@@ -86,7 +86,6 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Logout Button
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
 <img src="https://github.com/evaprakash/FBUApp/blob/master/Wireframe.png" width=600>
 
 ### Milestones
