@@ -10,11 +10,24 @@ public class Business {
     int review_count;
     float rating;
     String price;
+    Location location;
     String display_phone;
     float distance;
 
     public String getName() {
         return name;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getAddressLineOne() {
+        return location.getDisplayAddress().get(0);
+    }
+
+    public String getAddressLineTwo() {
+        return location.getDisplayAddress().get(1);
     }
 
     public String getImageUrl() {

@@ -19,9 +19,9 @@
         android:hint="Name"/>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/businessDetailsImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/image_post_height"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:layout_gravity="center"
         tools:srcCompat="@tools:sample/avatars" />
@@ -35,12 +35,19 @@
         android:hint="Open/Closed" />
 
     <TextView
-        android:id="@+id/businessDetailsAddress"
+        android:id="@+id/businessDetailsAddressLineOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Address Line One" />
+
+    <TextView
+        android:id="@+id/businessDetailsAddressLineTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
-        android:hint="Address" />
+        android:hint="Address Line Two" />
 
     <TextView
         android:id="@+id/businessDetailsPhoneNumber"
