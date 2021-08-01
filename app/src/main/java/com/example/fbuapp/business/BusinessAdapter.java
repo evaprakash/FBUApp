@@ -76,6 +76,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<com.example.fbuapp.bus
             businessName.setText(business.getName());
             businessAddressLineOne.setText(business.getAddressLineOne());
             businessAddressLineTwo.setText(business.getAddressLineTwo());
+            ratingBar.setRating(business.getScore());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

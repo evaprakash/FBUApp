@@ -16,6 +16,7 @@ public class Ranking {
     public static final int MAX_TRANSIT_DISTANCE = 25000;
     public static final int MAX_AUTOMOBILE_DISTANCE = 35000;
     public static final int MAX_DISTANCE_PADDING = 1500;
+    public static final int NUM_STARS = 5;
 
     List<Business> businesses;
     float[] rankings;
@@ -33,14 +34,6 @@ public class Ranking {
         this.transportation = transportation;
     }
 
-    public List<Float> getRankingsList() {
-        List<Float> rankingsList = new ArrayList<>();
-        for (int i = 0; i < this.rankings.length; i++) {
-            rankingsList.add(this.rankings[i]);
-        }
-        return rankingsList;
-    }
-
     public List<Business> rank() {
         int total = this.businesses.size();
         calculateDistanceScores();
@@ -50,8 +43,14 @@ public class Ranking {
         int[] indices = getIndicesArray(total);
         int[] sortedIndices = mergeSort(indices, this.rankings);
         List<Business> rankedBusinesses = new ArrayList<>();
+        float divideBy = 1;
         for (int i = total - 1; i >= 0; i--) {
-            rankedBusinesses.add(this.businesses.get(sortedIndices[i]));
+            if (i == total - 1) {
+                divideBy = this.rankings[sortedIndices[i]] / NUM_STARS;
+            }
+            Business business = this.businesses.get(sortedIndices[i]);
+            business.setScore(this.rankings[sortedIndices[i]] / divideBy);
+            rankedBusinesses.add(business);
         }
         this.businesses = rankedBusinesses;
         return this.businesses;

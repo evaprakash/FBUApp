@@ -133,8 +133,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                             BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
                             Ranking ranking = new Ranking(businessResponse.getResources(), priceContent, transportationContent);
                             List<Business> rankedBusinesses = ranking.rank();
-                            List<Float> rankings = ranking.getRankingsList();
-                            seeResults(rankedBusinesses, rankings);
+                            seeResults(rankedBusinesses);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -154,10 +153,9 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
         });
     }
 
-    private void seeResults(List<Business> rankedBusinesses, List<Float> rankingsList) {
+    private void seeResults(List<Business> rankedBusinesses) {
         Intent intent = new Intent(getContext(), BusinessActivity.class);
         intent.putExtra("rankedBusinesses", Parcels.wrap(rankedBusinesses));
-        intent.putExtra("rankingsList", Parcels.wrap(rankingsList));
         getContext().startActivity(intent);
     }
 

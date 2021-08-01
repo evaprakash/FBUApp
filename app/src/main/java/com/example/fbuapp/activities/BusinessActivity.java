@@ -29,8 +29,6 @@ public class BusinessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
         rankedBusinesses = (List<Business>) Parcels.unwrap(getIntent().getParcelableExtra("rankedBusinesses"));
-        rankings = (List<Float>) Parcels.unwrap(getIntent().getParcelableExtra("rankingsList"));
-
         rvBusinesses = findViewById(R.id.rvBusinesses);
         allBusinesses= new ArrayList<>();
         adapter = new BusinessAdapter(getApplicationContext(), allBusinesses);

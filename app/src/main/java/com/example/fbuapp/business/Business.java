@@ -13,6 +13,15 @@ public class Business {
     Location location;
     String display_phone;
     float distance;
+    float score;
+
+    public void setScore(float s) {
+        score = s;
+    }
+
+    public float getScore() {
+        return score;
+    }
 
     public String getName() {
         return name;
