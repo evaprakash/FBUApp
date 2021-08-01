@@ -75,7 +75,11 @@ public class BusinessAdapter extends RecyclerView.Adapter<com.example.fbuapp.bus
         public void bind(Business business) {
             businessName.setText(business.getName());
             businessAddressLineOne.setText(business.getAddressLineOne());
-            businessAddressLineTwo.setText(business.getAddressLineTwo());
+            if (business.getAddressLineTwo().equals("")) {
+                businessAddressLineTwo.setVisibility(View.INVISIBLE);
+            } else {
+                businessAddressLineTwo.setText(business.getAddressLineTwo());
+            }
             ratingBar.setRating(business.getScore());
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -36,7 +36,11 @@ public class Business {
     }
 
     public String getAddressLineTwo() {
-        return location.getDisplayAddress().get(1);
+        if (location.getDisplayAddress().size() > 1) {
+            return location.getDisplayAddress().get(1);
+        } else {
+            return "";
+        }
     }
 
     public String getImageUrl() {
