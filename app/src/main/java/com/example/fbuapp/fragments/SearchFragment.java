@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -138,7 +137,14 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                                 List<Business> rankedBusinesses = ranking.rank();
                                 seeResults(rankedBusinesses);
                             } else {
-                                Log.e(TAG, "Error with search request");
+                                MotionToast.Companion.createColorToast(getActivity(),
+                                        "Error",
+                                        "Error with search request.",
+                                        MotionToast.TOAST_ERROR,
+                                        MotionToast.GRAVITY_BOTTOM,
+                                        MotionToast.SHORT_DURATION,
+                                        ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
+                                Log.e(TAG, "Error with search request!!");
                             }
 
                         } catch (JSONException e) {
@@ -174,7 +180,6 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(this.getContext(), text, Toast.LENGTH_LONG).show();
     }
 
     @Override
