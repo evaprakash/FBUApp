@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.fbuapp.R;
@@ -38,6 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import www.sanju.motiontoast.MotionToast;
 
 
 /**
@@ -129,11 +131,15 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                         int statusCode = response.code();
                         JSONObject jsonResponse = null;
                         try {
-                            jsonResponse = new JSONObject(response.body().string());
-                            BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
-                            Ranking ranking = new Ranking(businessResponse.getResources(), priceContent, transportationContent);
-                            List<Business> rankedBusinesses = ranking.rank();
-                            seeResults(rankedBusinesses);
+                            if (response.body() != null) {
+                                jsonResponse = new JSONObject(response.body().string());
+                                BusinessResponse businessResponse = BusinessResponse.parseJSON(jsonResponse.toString());
+                                Ranking ranking = new Ranking(businessResponse.getResources(), priceContent, transportationContent);
+                                List<Business> rankedBusinesses = ranking.rank();
+                                seeResults(rankedBusinesses);
+                            } else {
+                                Log.e(TAG, "Error with search request");
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -141,12 +147,18 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                             e.printStackTrace();
                         }
                         Log.i(TAG, String.valueOf(jsonResponse));
-                        Log.i(TAG, String.valueOf(response) + " " + response.isSuccessful());
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.e(TAG, "Error with request");
+                        MotionToast.Companion.createColorToast(getActivity(),
+                                "Error",
+                                "Error with search request.",
+                                MotionToast.TOAST_ERROR,
+                                MotionToast.GRAVITY_BOTTOM,
+                                MotionToast.SHORT_DURATION,
+                                ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                     }
                 });
             }

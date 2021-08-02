@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,8 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import www.sanju.motiontoast.MotionToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +84,13 @@ public class PostsFragment extends Fragment {
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts", e);
+                    MotionToast.Companion.createColorToast(getActivity(),
+                            "Error",
+                            "Error while loading posts.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                     return;
                 }
                 allPosts.addAll(posts);

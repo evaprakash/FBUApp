@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fbuapp.BitmapScaler;
+import com.example.fbuapp.activities.MainActivity;
+import com.example.fbuapp.activities.SignUpActivity;
 import com.example.fbuapp.posts.Post;
 import com.example.fbuapp.R;
 import com.parse.FindCallback;
@@ -35,6 +38,8 @@ import com.parse.SaveCallback;
 
 import java.io.File;
 import java.util.List;
+
+import www.sanju.motiontoast.MotionToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +86,13 @@ public class ComposeFragment extends Fragment {
                 boolean isPhoto=true;
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    MotionToast.Companion.createColorToast(getActivity(),
+                            "Error",
+                            "Message cannot be empty.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null) {
@@ -113,7 +124,13 @@ public class ComposeFragment extends Fragment {
                 Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(takenImage, ivPostImage.getWidth());
                 ivPostImage.setImageBitmap(resizedBitmap);
             } else {
-                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                MotionToast.Companion.createColorToast(getActivity(),
+                        "Error",
+                        "Picture was not taken.",
+                        MotionToast.TOAST_ERROR,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.SHORT_DURATION,
+                        ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
             }
         }
     }
@@ -140,9 +157,21 @@ public class ComposeFragment extends Fragment {
             public void done(ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                    MotionToast.Companion.createColorToast(getActivity(),
+                            "Error",
+                            "Error while saving post.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                 }
-                Log.i(TAG, "Post save was successful!!");
+                MotionToast.Companion.createColorToast(getActivity(),
+                        "Success",
+                        "Posted!",
+                        MotionToast.TOAST_SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.SHORT_DURATION,
+                        ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
             }
@@ -156,7 +185,13 @@ public class ComposeFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    MotionToast.Companion.createColorToast(getActivity(),
+                            "Error",
+                            "Error while loading posts.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(getContext(),R.font.helvetica_regular));
                     return;
                 }
 

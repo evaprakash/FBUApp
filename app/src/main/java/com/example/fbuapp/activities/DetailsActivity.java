@@ -1,6 +1,7 @@
 package com.example.fbuapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -29,6 +30,8 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import www.sanju.motiontoast.MotionToast;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -95,9 +98,23 @@ public class DetailsActivity extends AppCompatActivity {
                     public void done(ParseException exception) {
                         if (exception != null) {
                             Log.e(TAG, "Error while saving", exception);
+                            MotionToast.Companion.createColorToast(DetailsActivity.this,
+                                    "Error",
+                                    "Error while saving comment.",
+                                    MotionToast.TOAST_ERROR,
+                                    MotionToast.GRAVITY_BOTTOM,
+                                    MotionToast.SHORT_DURATION,
+                                    ResourcesCompat.getFont(DetailsActivity.this,R.font.helvetica_regular));
                             return;
                         } else {
                             writeComment.setText("");
+                            MotionToast.Companion.createColorToast(DetailsActivity.this,
+                                    "Success",
+                                    "Posted!",
+                                    MotionToast.TOAST_SUCCESS,
+                                    MotionToast.GRAVITY_BOTTOM,
+                                    MotionToast.SHORT_DURATION,
+                                    ResourcesCompat.getFont(DetailsActivity.this,R.font.helvetica_regular));
                         }
                     }
                 });
@@ -153,6 +170,13 @@ public class DetailsActivity extends AppCompatActivity {
             public void done(List<Comment> comments, ParseException exception) {
                 if (exception != null) {
                     Log.e(TAG, "Issue with getting comments", exception);
+                    MotionToast.Companion.createColorToast(DetailsActivity.this,
+                            "Error",
+                            "Error with loading comments.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(DetailsActivity.this,R.font.helvetica_regular));
                     return;
                 }
                 for (Comment comment : comments) {
