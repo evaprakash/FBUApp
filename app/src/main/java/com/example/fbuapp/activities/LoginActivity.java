@@ -1,18 +1,20 @@
 package com.example.fbuapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.fbuapp.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import www.sanju.motiontoast.MotionToast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,7 +62,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(LoginActivity.this, "Issue with login!", Toast.LENGTH_SHORT).show();
+                    MotionToast.Companion.createColorToast(LoginActivity.this,
+                            "Error",
+                            "Invalid login.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(LoginActivity.this,R.font.helvetica_regular));
                     return;
                 }
                 goMainActivity();

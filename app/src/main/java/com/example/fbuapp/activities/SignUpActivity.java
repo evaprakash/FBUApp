@@ -21,8 +21,10 @@ import www.sanju.motiontoast.MotionToast;
 public class SignUpActivity extends AppCompatActivity {
 
     public static final String TAG = "SignUpActivity";
+    public static final String KEY_LOCATION = "location";
     private EditText etSignUpUsername;
     private EditText etSignUpPassword;
+    private EditText etSignUpLocation;
     private Button btnSubmit;
 
     @Override
@@ -32,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         etSignUpUsername = findViewById(R.id.etSignUpUsername);
         etSignUpPassword = findViewById(R.id.etSignUpPassword);
+        etSignUpLocation = findViewById(R.id.etSignUpLocation);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -40,16 +43,18 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick login button");
                 String username = etSignUpUsername.getText().toString();
                 String password = etSignUpPassword.getText().toString();
-                signUpUser(username, password);
+                String location = etSignUpLocation.getText().toString();
+                signUpUser(username, password, location);
             }
         });
     }
 
-    private void signUpUser(String username, String password) {
+    private void signUpUser(String username, String password, String location) {
         ParseUser user = new ParseUser();
 
         user.setUsername(username);
         user.setPassword(password);
+        user.put(KEY_LOCATION, location);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {

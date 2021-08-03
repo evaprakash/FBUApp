@@ -23,6 +23,8 @@ import com.example.fbuapp.activities.BusinessActivity;
 import com.example.fbuapp.business.Business;
 import com.example.fbuapp.business.BusinessResponse;
 import com.example.fbuapp.business.YelpService;
+import com.parse.Parse;
+import com.parse.ParseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +50,8 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private final String BASE_URL = "https://api.yelp.com/v3/";
     private final String TAG = "SearchFragment";
     private final String SORT_BY = "review_count";
+    public final String BACKUP_LOCATION = "Menlo Park";
+    public static final String KEY_LOCATION = "location";
     private final int LIMIT = 50;
     private EditText term;
     private EditText location;
@@ -102,8 +106,8 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 YelpService yelpService = retrofit.create(YelpService.class);
-                String termContent = term.getText().toString();
-                String locationContent = location.getText().toString();
+                String termContent = term.getText().toString().toLowerCase();
+                String rawLocationContent = location.getText().toString();
                 String transportationContent = transportation_spinner.getSelectedItem().toString().toLowerCase();
                 String rawCategoryContent = category_spinner.getSelectedItem().toString();
                 String categoryContent;
@@ -121,6 +125,18 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                     priceContent = "2, 3";
                 } else {
                     priceContent="1";
+                }
+
+                String locationContent;
+                if (rawLocationContent.equals("")) {
+                    String defaultLocationContent = ParseUser.getCurrentUser().getString(KEY_LOCATION);
+                    if (defaultLocationContent.equals("")) {
+                        locationContent = BACKUP_LOCATION.toLowerCase();
+                    } else {
+                        locationContent = defaultLocationContent.toLowerCase();
+                    }
+                } else {
+                    locationContent = rawLocationContent.toLowerCase();
                 }
 
                 Call<ResponseBody> call = yelpService.filteredSearch(termContent, locationContent, categoryContent, SORT_BY, LIMIT);

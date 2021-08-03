@@ -24,8 +24,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.fbuapp.BitmapScaler;
-import com.example.fbuapp.activities.MainActivity;
-import com.example.fbuapp.activities.SignUpActivity;
 import com.example.fbuapp.posts.Post;
 import com.example.fbuapp.R;
 import com.parse.FindCallback;
