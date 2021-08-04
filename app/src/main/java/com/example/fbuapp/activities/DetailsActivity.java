@@ -70,7 +70,13 @@ public class DetailsActivity extends AppCompatActivity {
         queryComments(post);
         username.setText(post.getUser().getUsername());
         caption.setText(post.getDescription());
-        Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
+
+        if (post.getImage() != null) {
+            Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
+        } else {
+            imagePost.setVisibility(View.GONE);
+        }
+
         createdAt.setText(calculateTimeAgo(post.getCreatedAt()));
 
         swipeContainerComments = (SwipeRefreshLayout) findViewById(R.id.swipeContainerComments);

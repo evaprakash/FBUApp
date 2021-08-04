@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,6 +81,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         AnimatedVectorDrawableCompat avd;
         AnimatedVectorDrawable avd2;
 
+        FrameLayout flImage;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDescription = itemView.findViewById(R.id.tvDescription);
@@ -88,6 +91,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             heart = itemView.findViewById(R.id.heart);
             numLikes = itemView.findViewById(R.id.numLikes);
             postLike = itemView.findViewById(R.id.postLike);
+            flImage = itemView.findViewById(R.id.flImage);
 
         }
 
@@ -95,12 +99,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription.setText(post.getDescription());
             tvName.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();
-            if (image != null) {
+            if (image == null) {
+                flImage.setVisibility(View.GONE);
+            } else {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
             numLikes.setText(String.valueOf(post.getNumLikes()));
 
             final Drawable drawable = postLike.getDrawable();
+
 
             if (post.hasLiked(ParseUser.getCurrentUser())) {
                 heart.setImageResource(R.drawable.ic_baseline_favorite_24);
@@ -163,9 +170,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (image == null) {
-                        return;
-                    }
                     Intent intent = new Intent(context, DetailsActivity.class);
                     intent.putExtra("post", Parcels.wrap(post));
                     context.startActivity(intent);
