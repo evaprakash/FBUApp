@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.fbuapp.R;
 import com.parse.ParseException;
@@ -22,9 +21,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     public static final String TAG = "SignUpActivity";
     public static final String KEY_LOCATION = "location";
+    public static final String KEY_CODE = "code";
     private EditText etSignUpUsername;
     private EditText etSignUpPassword;
     private EditText etSignUpLocation;
+    private EditText etCode;
     private Button btnSubmit;
 
     @Override
@@ -35,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         etSignUpUsername = findViewById(R.id.etSignUpUsername);
         etSignUpPassword = findViewById(R.id.etSignUpPassword);
         etSignUpLocation = findViewById(R.id.etSignUpLocation);
+        etCode = findViewById(R.id.etCode);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -44,17 +46,30 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = etSignUpUsername.getText().toString();
                 String password = etSignUpPassword.getText().toString();
                 String location = etSignUpLocation.getText().toString();
-                signUpUser(username, password, location);
+                int code = 0;
+                if (etCode.getText().toString().equals("")) {
+                    MotionToast.Companion.createColorToast(SignUpActivity.this,
+                            "Error",
+                            "Issue with signup.",
+                            MotionToast.TOAST_ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.SHORT_DURATION,
+                            ResourcesCompat.getFont(SignUpActivity.this, R.font.helvetica_regular));
+                } else {
+                    code = Integer.valueOf(etCode.getText().toString());
+                    signUpUser(username, password, location, code);
+                }
             }
         });
     }
 
-    private void signUpUser(String username, String password, String location) {
+    private void signUpUser(String username, String password, String location, int code) {
         ParseUser user = new ParseUser();
 
         user.setUsername(username);
         user.setPassword(password);
         user.put(KEY_LOCATION, location);
+        user.put(KEY_CODE, code);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
@@ -70,7 +85,6 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 } else {
-                    Toast.makeText(SignUpActivity.this, "Issue with signup!", Toast.LENGTH_SHORT).show();
                     MotionToast.Companion.createColorToast(SignUpActivity.this,
                             "Error",
                             "Issue with signup.",

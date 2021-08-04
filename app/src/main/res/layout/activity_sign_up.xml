@@ -32,6 +32,15 @@
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="@string/default_location" />
 
+    <EditText
+        android:id="@+id/etCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:hint="Code"
+        android:inputType="numberPassword"/>
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="50dp"
         android:layout_height="50dp"
