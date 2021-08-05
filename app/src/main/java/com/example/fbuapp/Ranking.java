@@ -43,6 +43,7 @@ public class Ranking {
 
     public float calculatePerfectScore() {
         float score = PRICE_WEIGHT + OPEN_WEIGHT + RATING_WEIGHT * calculateRatingMetric(IDEAL_RATING, IDEAL_REVIEW_COUNT);
+
         if (this.transportation.equals("walking")) {
             score += DISTANCE_WEIGHT * 1/IDEAL_WALKING_DISTANCE;
         } else if (this.transportation.equals("bicycle")) {

@@ -84,6 +84,7 @@ public class PostsFragment extends Fragment {
                     btnSubmitUnlock.setImageResource(R.drawable.ic_baseline_lock_open_24);
                     passwordProtection.setVisibility(View.GONE);
                     swipeContainer.setVisibility(View.VISIBLE);
+                    rvPosts.setVisibility(View.VISIBLE);
                 }
             }
         });

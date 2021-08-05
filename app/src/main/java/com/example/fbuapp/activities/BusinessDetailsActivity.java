@@ -76,6 +76,14 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         float score = business.getScore();
         if (score >= 5.0) {
             businessDetailsLayout.setBackgroundResource(R.drawable.five);
+        } else if (score >= 4.0) {
+            businessDetailsLayout.setBackgroundResource(R.drawable.four);
+        } else if (score >= 3.0) {
+            businessDetailsLayout.setBackgroundResource(R.drawable.three);
+        } else if (score >= 2.0) {
+            businessDetailsLayout.setBackgroundResource(R.drawable.two);
+        } else {
+            businessDetailsLayout.setBackgroundResource(R.drawable.one);
         }
 
     }
