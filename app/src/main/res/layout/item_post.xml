@@ -5,15 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/top_margin"
+    android:background="@drawable/post_bg"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvUsername"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/username_bg"
+        android:gravity="center"
         android:text="TextView"
+        android:layout_marginTop="@dimen/top_margin"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:singleLine="false"
         tools:text="rahul" />
 
     <TextView
@@ -22,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
         tools:text="@string/tv_description" />
 
     <FrameLayout
@@ -31,7 +38,7 @@
         >
         <ImageView
             android:id="@+id/ivImage"
-            android:layout_width="@dimen/layout_height"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:layout_gravity="center"
             tools:srcCompat="@tools:sample/avatars" />
@@ -68,6 +75,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/likes_hint"
+            android:textStyle="bold"
             android:textColor="@color/black" />
     </LinearLayout>
 

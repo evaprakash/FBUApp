@@ -12,6 +12,7 @@ public class Business {
     String price;
     Location location;
     String display_phone;
+    String phone;
     float distance;
     float score;
 
@@ -66,6 +67,8 @@ public class Business {
     public String getDisplayPhone() {
         return display_phone;
     }
+
+    public String getPhone() { return phone;}
 
     public float getDistance() {
         return distance;

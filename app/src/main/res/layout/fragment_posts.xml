@@ -32,14 +32,22 @@
         android:visibility="gone"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/passwordAttempt"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:layout_marginBottom="@dimen/bottom_margin"
-            android:inputType="numberPassword" />
+            android:id="@+id/textInputPasswordAttempt"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordAttempt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:layout_marginBottom="@dimen/bottom_margin"
+                android:inputType="numberPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
             android:id="@+id/btnSubmitUnlock"

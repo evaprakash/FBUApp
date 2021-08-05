@@ -3,7 +3,9 @@ package com.example.fbuapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,16 +16,19 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class BusinessDetailsActivity extends AppCompatActivity {
 
-    TextView businessDetailsName;
-    ImageView businessDetailsImage;
-    TextView businessDetailsOpen;
-    TextView businessDetailsAddressLineOne;
-    TextView businessDetailsAddressLineTwo;
-    TextView businessDetailsPhoneNumber;
-    TextView businessDetailsPrice;
-    Business business;
+    private LinearLayout businessDetailsLayout;
+    private TextView businessDetailsName;
+    private ImageView businessDetailsImage;
+    private TextView businessDetailsOpen;
+    private TextView businessDetailsAddressLineOne;
+    private TextView businessDetailsAddressLineTwo;
+    private TextView businessDetailsPhoneNumber;
+    private TextView businessDetailsPrice;
+    private Business business;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         business = (Business) Parcels.unwrap(getIntent().getParcelableExtra("business"));
 
         businessDetailsName = findViewById(R.id.businessDetailsName);
+        businessDetailsLayout = findViewById(R.id.businessDetailsLayout);
         businessDetailsImage = findViewById(R.id.businessDetailsImage);
         businessDetailsOpen = findViewById(R.id.businessDetailsOpen);
         businessDetailsAddressLineOne = findViewById(R.id.businessDetailsAddressLineOne);
@@ -44,11 +50,21 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         businessDetailsName.setText(business.getName());
         businessDetailsAddressLineOne.setText(business.getAddressLineOne());
         businessDetailsAddressLineTwo.setText(business.getAddressLineTwo());
-        businessDetailsPhoneNumber.setText(business.getDisplayPhone());
-        businessDetailsPrice.setText(business.getPrice());
+        if (!business.getDisplayPhone().equals("")) {
+            businessDetailsPhoneNumber.setText(business.getDisplayPhone());
+        } else {
+            businessDetailsPhoneNumber.setVisibility(View.GONE);
+        }
+        System.out.println(business.getDisplayPhone());
+
+        if (business.getPrice() != null) {
+            businessDetailsPrice.setText(business.getPrice());
+        } else {
+            businessDetailsPrice.setVisibility(View.GONE);
+        }
 
         if (business.getImageUrl() != null) {
-            Glide.with(BusinessDetailsActivity.this).load(business.getImageUrl()).into(businessDetailsImage);
+            Glide.with(BusinessDetailsActivity.this).load(business.getImageUrl()).transform(new RoundedCornersTransformation(50, 10)).into(businessDetailsImage);
         }
 
         if (business.getIsClosed()) {
@@ -56,5 +72,11 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         } else {
             businessDetailsOpen.setText("OPEN");
         }
+
+        float score = business.getScore();
+        if (score >= 5.0) {
+            businessDetailsLayout.setBackgroundResource(R.drawable.five);
+        }
+
     }
 }

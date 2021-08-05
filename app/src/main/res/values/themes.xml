@@ -12,5 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:logo">@drawable/iris_no_title</item>
+        <item name="android:displayOptions">useLogo</item>
     </style>
 </resources>

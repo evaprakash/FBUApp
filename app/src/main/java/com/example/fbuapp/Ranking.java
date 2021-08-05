@@ -15,7 +15,14 @@ public class Ranking {
     public static final int MAX_BICYCLE_DISTANCE = 9000;
     public static final int MAX_TRANSIT_DISTANCE = 25000;
     public static final int MAX_AUTOMOBILE_DISTANCE = 35000;
-    public static final int MAX_DISTANCE_PADDING = 1500;
+    public static final int MAX_DISTANCE_PADDING = 1000;
+    public static final int IDEAL_WALKING_DISTANCE = 400;
+    public static final int IDEAL_BICYCLE_DISTANCE = 4000;
+    public static final int IDEAL_TRANSIT_DISTANCE = 6000;
+    public static final int IDEAL_AUTOMOBILE_DISTANCE = 8000;
+    public static final int IDEAL_REVIEW_COUNT = 10;
+    public static final float IDEAL_RATING = 9/2;
+
     public static final int NUM_STARS = 5;
 
     List<Business> businesses;
@@ -34,6 +41,20 @@ public class Ranking {
         this.transportation = transportation;
     }
 
+    public float calculatePerfectScore() {
+        float score = PRICE_WEIGHT + OPEN_WEIGHT + RATING_WEIGHT * calculateRatingMetric(IDEAL_RATING, IDEAL_REVIEW_COUNT);
+        if (this.transportation.equals("walking")) {
+            score += DISTANCE_WEIGHT * 1/IDEAL_WALKING_DISTANCE;
+        } else if (this.transportation.equals("bicycle")) {
+            score += DISTANCE_WEIGHT * 1/IDEAL_BICYCLE_DISTANCE;
+        } else if (this.transportation.equals("transit")) {
+            score += DISTANCE_WEIGHT * 1/IDEAL_TRANSIT_DISTANCE;
+        } else {
+            score += DISTANCE_WEIGHT * 1/IDEAL_AUTOMOBILE_DISTANCE;
+        }
+        return score;
+    }
+
     public List<Business> rank() {
         int total = this.businesses.size();
         calculateDistanceScores();
@@ -43,11 +64,8 @@ public class Ranking {
         int[] indices = getIndicesArray(total);
         int[] sortedIndices = mergeSort(indices, this.rankings);
         List<Business> rankedBusinesses = new ArrayList<>();
-        float divideBy = 1;
+        float divideBy = calculatePerfectScore()/NUM_STARS;
         for (int i = total - 1; i >= 0; i--) {
-            if (i == total - 1) {
-                divideBy = this.rankings[sortedIndices[i]] / NUM_STARS;
-            }
             Business business = this.businesses.get(sortedIndices[i]);
             business.setScore(this.rankings[sortedIndices[i]] / divideBy);
             rankedBusinesses.add(business);

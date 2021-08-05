@@ -13,19 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:hint="Username"
         android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imagePost"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/image_post_height"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Caption"
+        android:layout_marginBottom="@dimen/bottom_margin"
         android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imagePost"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_post_height"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainerComments"

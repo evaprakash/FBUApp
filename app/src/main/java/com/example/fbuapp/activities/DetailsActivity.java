@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import www.sanju.motiontoast.MotionToast;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -72,7 +73,7 @@ public class DetailsActivity extends AppCompatActivity {
         caption.setText(post.getDescription());
 
         if (post.getImage() != null) {
-            Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).into(imagePost);
+            Glide.with(DetailsActivity.this).load(post.getImage().getUrl()).transform(new RoundedCornersTransformation(50, 10)).into(imagePost);
         } else {
             imagePost.setVisibility(View.GONE);
         }

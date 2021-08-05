@@ -31,6 +31,8 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
@@ -102,7 +104,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image == null) {
                 flImage.setVisibility(View.GONE);
             } else {
-                Glide.with(context).load(image.getUrl()).into(ivImage);
+                Glide.with(context).load(image.getUrl()).transform(new RoundedCornersTransformation(50, 10)).into(ivImage);
             }
             numLikes.setText(String.valueOf(post.getNumLikes()));
 
