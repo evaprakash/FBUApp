@@ -101,9 +101,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Week 3: Complete Complex algorithm part and wrap up any remaining features
    * [X] Display rankings and resource details (e.g. images of resource provided by Yelp, etc.)
 * Week 4: Polish / Stretch goals
-   [X] Password-protected feed
+   * [X] Password-protected feed
    * UI fixes in feed/resource finding
-   [X] Rating by comparison to ideal match instead of comparison to best match 
+   * [X] Rating by comparison to ideal match instead of comparison to best match 
 
 ### [BONUS] Digital Wireframes & Mockups
 
