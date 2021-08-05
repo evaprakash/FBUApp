@@ -41,11 +41,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 
 **Optional Nice-to-have Stories**
 
-* Options for different languages
 * Password protected feed
-* Uploading profile pictures (?)
-* Following/friending people (?)
-* Messaging component (?)
+* More advanced rating algorithm
+   * Rate by comparison to ideal match instead of comparison to best match
 
 ### Screen Archetypes
 
@@ -56,7 +54,7 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Creation
     * User can create new post
     * User can like/comment on other posts
-* Map View
+* Search
     * Link to resources
     * View results page after entering resources
 
@@ -80,7 +78,7 @@ The goal of this app is to connect domestic violence/SA victims with each other 
     * Scroll through feed, like posts
 * Creation screen
     * View post details, comment
-* Map Screen
+* Search Screen
     * Filter resources by preferences
     * Results page
 * Logout Button
@@ -103,9 +101,9 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Week 3: Complete Complex algorithm part and wrap up any remaining features
    * [X] Display rankings and resource details (e.g. images of resource provided by Yelp, etc.)
 * Week 4: Polish / Stretch goals
-   * Password-protected feed
+   [X] Password-protected feed
    * UI fixes in feed/resource finding
-   * Personal profile grid view
+   [X] Rating by comparison to ideal match instead of comparison to best match 
 
 ### [BONUS] Digital Wireframes & Mockups
 
