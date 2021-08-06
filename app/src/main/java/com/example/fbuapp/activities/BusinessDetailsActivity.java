@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -19,12 +20,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.fbuapp.R;
 import com.example.fbuapp.business.Business;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.parceler.Parcels;
 
@@ -40,10 +35,10 @@ public class BusinessDetailsActivity extends AppCompatActivity {
     private TextView businessDetailsOpen;
     private TextView businessDetailsAddressLineOne;
     private TextView businessDetailsAddressLineTwo;
-    private TextView businessDetailsPhoneNumber;
     private TextView businessDetailsPrice;
     private Business business;
     private Button btnViewMap;
+    private Button btnCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +53,11 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         businessDetailsOpen = findViewById(R.id.businessDetailsOpen);
         businessDetailsAddressLineOne = findViewById(R.id.businessDetailsAddressLineOne);
         businessDetailsAddressLineTwo= findViewById(R.id.businessDetailsAddressLineTwo);
-        businessDetailsPhoneNumber = findViewById(R.id.businessDetailsPhoneNumber);
         businessDetailsPrice = findViewById(R.id.businessDetailsPrice);
         businessDetailsName.setText(business.getName());
         businessDetailsAddressLineOne.setText(business.getAddressLineOne());
         businessDetailsAddressLineTwo.setText(business.getAddressLineTwo());
-
-        if (!business.getDisplayPhone().equals("")) {
-            businessDetailsPhoneNumber.setText(business.getDisplayPhone());
-        } else {
-            businessDetailsPhoneNumber.setVisibility(View.GONE);
-        }
+        btnCall = findViewById(R.id.btnCall);
 
         if (business.getPrice() != null) {
             businessDetailsPrice.setText(business.getPrice());
@@ -105,6 +94,15 @@ public class BusinessDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToMap(business);
+            }
+        });
+
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + business.getPhone()));
+                startActivity(intent);
             }
         });
 

@@ -60,15 +60,6 @@
         android:hint="Address Line Two" />
 
     <TextView
-        android:id="@+id/businessDetailsPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginBottom="@dimen/bottom_margin"
-        android:hint="Phone Number" />
-
-    <TextView
         android:id="@+id/businessDetailsPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,6 +76,15 @@
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         android:text="View on map"
+        android:textColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:text="Call"
         android:layout_marginBottom="20dp"
         android:textColor="@color/purple_500" />
 
