@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -44,12 +45,10 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         businessDetailsAddressLineTwo= findViewById(R.id.businessDetailsAddressLineTwo);
         businessDetailsPhoneNumber = findViewById(R.id.businessDetailsPhoneNumber);
         businessDetailsPrice = findViewById(R.id.businessDetailsPrice);
-
-        businessDetailsName.setText(business.getName());
-
         businessDetailsName.setText(business.getName());
         businessDetailsAddressLineOne.setText(business.getAddressLineOne());
         businessDetailsAddressLineTwo.setText(business.getAddressLineTwo());
+
         if (!business.getDisplayPhone().equals("")) {
             businessDetailsPhoneNumber.setText(business.getDisplayPhone());
         } else {
@@ -69,8 +68,10 @@ public class BusinessDetailsActivity extends AppCompatActivity {
 
         if (business.getIsClosed()) {
             businessDetailsOpen.setText("CLOSED");
+            businessDetailsOpen.setTextColor(getResources().getColor(R.color.closed));
         } else {
             businessDetailsOpen.setText("OPEN");
+            businessDetailsOpen.setTextColor(getResources().getColor(R.color.open));
         }
 
         float score = business.getScore();

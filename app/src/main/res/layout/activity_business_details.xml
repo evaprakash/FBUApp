@@ -10,35 +10,39 @@
     tools:context=".activities.BusinessDetailsActivity">
 
 
-    <TextView
-        android:id="@+id/businessDetailsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/bottom_margin"
-        android:hint="Name" />
-
     <ImageView
         android:id="@+id/businessDetailsImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/image_post_height"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
+        android:id="@+id/businessDetailsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:hint="Name" />
+
+    <TextView
         android:id="@+id/businessDetailsOpen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Open/Closed" />
+
 
     <TextView
         android:id="@+id/businessDetailsAddressLineOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:hint="Address Line One" />
 
     <TextView
@@ -46,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Address Line Two" />
 
@@ -54,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Phone Number" />
 
@@ -62,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Price" />
 

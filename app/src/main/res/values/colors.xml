@@ -12,4 +12,7 @@
     <color name="three_color">#f1fcbd</color>
     <color name="two_color">#fad9ca</color>
     <color name="one_color">#fcb3a4</color>
+    <color name="open">#048533</color>
+    <color name="closed">#ff1900</color>
+
 </resources>
