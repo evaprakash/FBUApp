@@ -38,26 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginBottom="20dp"
-        android:hint="Open/Closed" />
-
-
-    <TextView
-        android:id="@+id/businessDetailsAddressLineOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:hint="Address Line One" />
-
-    <TextView
-        android:id="@+id/businessDetailsAddressLineTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
-        android:hint="Address Line Two" />
+        android:hint="Open/Closed" />
 
     <TextView
         android:id="@+id/businessDetailsPrice"

@@ -33,8 +33,6 @@ public class BusinessDetailsActivity extends AppCompatActivity {
     private TextView businessDetailsName;
     private ImageView businessDetailsImage;
     private TextView businessDetailsOpen;
-    private TextView businessDetailsAddressLineOne;
-    private TextView businessDetailsAddressLineTwo;
     private TextView businessDetailsPrice;
     private Business business;
     private Button btnViewMap;
@@ -51,12 +49,8 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         businessDetailsLayout = findViewById(R.id.businessDetailsLayout);
         businessDetailsImage = findViewById(R.id.businessDetailsImage);
         businessDetailsOpen = findViewById(R.id.businessDetailsOpen);
-        businessDetailsAddressLineOne = findViewById(R.id.businessDetailsAddressLineOne);
-        businessDetailsAddressLineTwo= findViewById(R.id.businessDetailsAddressLineTwo);
         businessDetailsPrice = findViewById(R.id.businessDetailsPrice);
         businessDetailsName.setText(business.getName());
-        businessDetailsAddressLineOne.setText(business.getAddressLineOne());
-        businessDetailsAddressLineTwo.setText(business.getAddressLineTwo());
         btnCall = findViewById(R.id.btnCall);
 
         if (business.getPrice() != null) {
