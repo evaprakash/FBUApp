@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/comment_bg"
+    android:paddingLeft="@dimen/margin_right"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/bottom_margin">
 
@@ -12,6 +13,7 @@
         android:id="@+id/commentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginRight="@dimen/margin_right"
         android:hint="@string/username"
         android:textStyle="bold" />
@@ -20,5 +22,6 @@
         android:id="@+id/commentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:hint="@string/comment_content" />
 </LinearLayout>

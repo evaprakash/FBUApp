@@ -5,7 +5,7 @@
     android:id="@+id/loginPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/padding"
+    android:background="@drawable/login_bg"
     android:orientation="vertical"
     tools:context=".activities.LoginActivity">
 
@@ -14,6 +14,7 @@
         android:layout_width="@dimen/layout_width"
         android:layout_height="@dimen/layout_height_icon"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/top_margin"
         android:src="@drawable/iris" />
 
     <EditText

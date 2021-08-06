@@ -78,6 +78,7 @@ public class PostsFragment extends Fragment {
         btnSubmitUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (passwordAttempt.getText().toString().equals("")) { return; }
                 int passwordInput = Integer.valueOf(passwordAttempt.getText().toString());
                 int password = ParseUser.getCurrentUser().getInt(KEY_CODE);
                 if (password == passwordInput) {

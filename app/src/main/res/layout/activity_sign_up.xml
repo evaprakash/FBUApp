@@ -5,7 +5,7 @@
     android:id="@+id/signUpPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/padding"
+    android:background="@drawable/login_bg"
     android:orientation="vertical"
     tools:context=".activities.SignUpActivity">
 
@@ -13,6 +13,7 @@
         android:id="@+id/etSignUpUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
         android:ems="10"
         android:hint="@string/username" />
 
