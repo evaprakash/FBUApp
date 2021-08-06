@@ -1,17 +1,30 @@
 package com.example.fbuapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fbuapp.R;
 import com.example.fbuapp.business.Business;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.parceler.Parcels;
 
@@ -30,6 +43,7 @@ public class BusinessDetailsActivity extends AppCompatActivity {
     private TextView businessDetailsPhoneNumber;
     private TextView businessDetailsPrice;
     private Business business;
+    private Button btnViewMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,7 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         business = (Business) Parcels.unwrap(getIntent().getParcelableExtra("business"));
 
         businessDetailsName = findViewById(R.id.businessDetailsName);
+        btnViewMap = findViewById(R.id.btnViewMap);
         businessDetailsLayout = findViewById(R.id.businessDetailsLayout);
         businessDetailsImage = findViewById(R.id.businessDetailsImage);
         businessDetailsOpen = findViewById(R.id.businessDetailsOpen);
@@ -54,7 +69,6 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         } else {
             businessDetailsPhoneNumber.setVisibility(View.GONE);
         }
-        System.out.println(business.getDisplayPhone());
 
         if (business.getPrice() != null) {
             businessDetailsPrice.setText(business.getPrice());
@@ -87,5 +101,20 @@ public class BusinessDetailsActivity extends AppCompatActivity {
             businessDetailsLayout.setBackgroundResource(R.drawable.one);
         }
 
+        btnViewMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMap(business);
+            }
+        });
+
+    }
+
+    public void goToMap(Business business) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra("latitude", business.getLatitude());
+        intent.putExtra("longitude", business.getLongitude());
+        intent.putExtra("name", business.getName());
+        this.startActivity(intent);
     }
 }

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +16,7 @@
     <ImageView
         android:id="@+id/businessDetailsImage"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/top_margin"
         android:layout_height="@dimen/image_post_height"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/bottom_margin"
@@ -24,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textStyle="bold"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Name" />
 
@@ -33,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginBottom="20dp"
         android:hint="Open/Closed" />
 
 
@@ -69,7 +74,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textStyle="bold"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:hint="Price" />
+
+    <Button
+        android:id="@+id/btnViewMap"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:text="View on map"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/purple_500" />
 
 </LinearLayout>

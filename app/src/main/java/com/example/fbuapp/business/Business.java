@@ -12,6 +12,7 @@ public class Business {
     String price;
     Location location;
     String display_phone;
+    Coordinates coordinates;
     String phone;
     float distance;
     float score;
@@ -42,6 +43,14 @@ public class Business {
         } else {
             return "";
         }
+    }
+
+    public float getLatitude() {
+        return coordinates.getLatitude();
+    }
+
+    public float getLongitude(){
+        return coordinates.getLongitude();
     }
 
     public String getImageUrl() {

@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:hint="Username"
+        android:layout_marginBottom="@dimen/bottom_margin"
         android:textStyle="bold" />
 
     <TextView
