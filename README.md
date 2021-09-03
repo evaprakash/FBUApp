@@ -103,17 +103,4 @@ The goal of this app is to connect domestic violence/SA victims with each other 
 * Week 4: Polish / Stretch goals
    * [X] Password-protected feed
    * UI fixes in feed/resource finding
-   * [X] Rating by comparison to ideal match instead of comparison to best match 
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
-## Schema 
-[This section will be completed in Unit 9]
-### Models
-[Add table of models]
-### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+   * [X] Rating by comparison to ideal match instead of comparison to best match
